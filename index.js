@@ -5,7 +5,10 @@ const app = express();
 // middleware
 app.use(express.json());
 const fileUpload = require("express-fileupload");
-app.use(fileUpload());
+app.use(
+  fileUpload({ useTempFiles: true, tempFileDir: "./controllers/files/" })
+  // upar me hm temporary file banaye hai jo ki server pe send hga and then wha se cloud pe send hga
+);
 
 // api route mount
 const upload = require("./routes/fileupload");
@@ -17,9 +20,9 @@ const PORT = process.env.PORT || 3000;
 
 // db connect
 require("./config/database").connect();
-
 // cloud connect
 require("./config/cloudinary").cloudinaryConnect();
+
 // default route
 app.get("/", (req, res) => {
   res.send("this is the landing page");
