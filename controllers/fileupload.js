@@ -64,7 +64,7 @@ exports.imageUpload = async (req, res) => {
     }
 
     // file format supported...now upload to cloudinary
-    let response = await uploadFileToCloudinary(file, "myserver");
+    let response = await uploadFileToCloudinary(file, "myserver"); // cloud pe jo folder hai na..uska naam hai "myserver"
     console.log(response);
 
     // make an entry in DB
